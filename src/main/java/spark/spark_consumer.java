@@ -18,12 +18,15 @@ import org.apache.spark.streaming.kafka010.*;
 
 import scala.Tuple2;
 
+import common.LogUtil;
+
 @SpringBootApplication
 public class spark_consumer {
 
     public static void main(String[] args) throws InterruptedException{
         SpringApplication.run(spark_consumer.class, args);
 
+        LogUtil.traceLog.info("Start Spark Streaming");
         SparkConf conf = new SparkConf().setMaster("local[3]").setAppName("SPARK-Streaming"); // Save some settings
         JavaStreamingContext jsc = new JavaStreamingContext(conf, Durations.seconds(10)); // Create StreamingContext which can manage the creation and operating of Streaming
 

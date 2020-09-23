@@ -1,1 +1,2 @@
-spark/spark_consumer.class
+common\LogUtil.class
+spark\spark_consumer.class
