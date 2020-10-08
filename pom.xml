@@ -55,7 +55,22 @@
 			<version>3.0.0</version>
 		</dependency>
 
-<!-- Logging -->
+		<!-- elasticsearch -->
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch/elasticsearch-hadoop -->
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch-hadoop</artifactId>
+			<version>7.9.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
+		<!-- Logging -->
 <!--		<dependency>-->
 <!--			<groupId>ch.qos.logback</groupId>-->
 <!--			<artifactId>logback-classic</artifactId>-->
