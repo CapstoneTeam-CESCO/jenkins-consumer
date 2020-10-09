@@ -34,7 +34,7 @@ public class spark_consumer {
         conf.set("spark.driver.bindAddress", "127.0.0.1");
         conf.set("es.index.auto.create", "true");
         conf.set("es.nodes.wan.only", "true");
-        conf.set("es.nodes", "127.0.0.1");
+        conf.set("es.nodes", "34.64.231.113");
         conf.set("es.port", "9200");
         conf.set("es.input.json", "true");
         JavaSparkContext sc = new JavaSparkContext(conf);
