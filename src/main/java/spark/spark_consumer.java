@@ -78,13 +78,13 @@ public class spark_consumer {
             public String call(ConsumerRecord<String, Object> cr) {
                     String json = "{" +
                             "\"index\":{" +
-                            "\"data\":\"" + (String)cr.value() + "\"" +
+                            "\"data\":" + (String)cr.value() +
                             "}}";
                     return json;
                 }
             }
         );
-        JavaEsSparkStreaming.saveJsonToEs(finalStream, "streaming/docs");
+        JavaEsSparkStreaming.saveJsonToEs(finalStream, "streaming/text");
 
         LogUtil.traceLog.info("Start Spark Streaming & elasticsearch");
         jsc.start();
