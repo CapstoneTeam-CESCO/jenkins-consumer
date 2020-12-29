@@ -34,14 +34,14 @@ public class spark_consumer {
         conf.set("spark.driver.bindAddress", "127.0.0.1");
         conf.set("es.index.auto.create", "true");
         conf.set("es.nodes.wan.only", "true");
-        conf.set("es.nodes", "34.64.231.113");
+        conf.set("es.nodes", "34.64.119.246");
         conf.set("es.port", "9200");
         conf.set("es.input.json", "true");
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaStreamingContext jsc = new JavaStreamingContext(sc, Durations.seconds(1)); // Create StreamingContext which can manage the creation and operating of Streaming
 
         Map<String, Object> kafkaParams = new HashMap<>();
-        kafkaParams.put("bootstrap.servers", "34.64.120.38:9092");
+        kafkaParams.put("bootstrap.servers", "34.64.155.139:9092");
         kafkaParams.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         kafkaParams.put("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
         kafkaParams.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -50,7 +50,7 @@ public class spark_consumer {
         kafkaParams.put("auto.offset.reset","latest");
         kafkaParams.put("enable.auto.commit",false);
 
-        Collection<String> topics = Arrays.asList("test-par3");
+        Collection<String> topics = Arrays.asList("test-topic");
 
         JavaInputDStream<ConsumerRecord<String, Object>> stream =
                 KafkaUtils.createDirectStream(
