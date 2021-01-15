@@ -8,6 +8,7 @@
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-streaming_2.12/3.0.0/spark-streaming_2.12-3.0.0-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/spark/spark-streaming_2.12/3.0.0/spark-streaming_2.12-3.0.0.jar!/" />
     </SOURCES>
   </library>
 </component>

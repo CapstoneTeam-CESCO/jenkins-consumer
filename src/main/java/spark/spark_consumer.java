@@ -1,33 +1,37 @@
 package spark;
 
+import common.LogUtil;
+import mariaConnect.jdbcConnector;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.streaming.Durations;
+import org.apache.spark.streaming.api.java.JavaDStream;
+import org.apache.spark.streaming.api.java.JavaInputDStream;
+import org.apache.spark.streaming.api.java.JavaStreamingContext;
+import org.apache.spark.streaming.kafka010.ConsumerStrategies;
+import org.apache.spark.streaming.kafka010.KafkaUtils;
+import org.apache.spark.streaming.kafka010.LocationStrategies;
+import org.elasticsearch.spark.streaming.api.java.JavaEsSparkStreaming;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-
-import org.apache.spark.api.java.function.Function;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.SparkConf;
-import org.apache.spark.streaming.Durations;
-import org.apache.spark.streaming.api.java.JavaDStream;
-import org.apache.spark.streaming.api.java.JavaStreamingContext;
-import org.apache.spark.streaming.api.java.JavaInputDStream;
-import org.apache.spark.streaming.kafka010.*;
-
-import org.elasticsearch.spark.streaming.api.java.JavaEsSparkStreaming;
-
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.SpringApplication;
-
-import common.LogUtil;
 
 @SpringBootApplication
 public class spark_consumer {
 
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args) throws InterruptedException, SQLException {
         SpringApplication.run(spark_consumer.class, args);
+
+        LogUtil.traceLog.info(("JDBC Connection..."));
+        jdbcConnector.connectDB();
 
         LogUtil.traceLog.info("Spark Streaming & elasticsearch setting...");
         SparkConf conf = new SparkConf().setMaster("local[3]").setAppName("streaming");
@@ -72,22 +76,30 @@ public class spark_consumer {
         // Spark Streaming 읽은 데이터의 value 를 출력한다.
         stream.map(raw->raw.value()).print();
 
+        //mariaDB connect
+
+
         // 데이터를 json 형식의 문자열로 변환하여 elasticsearch 에 저장한다.
         JavaDStream<String> finalStream = stream.map(new Function<ConsumerRecord<String, Object>, String> () {
             @Override
-            public String call(ConsumerRecord<String, Object> cr) {
-                    String json = "{" +
-                            "\"index\":{" +
-                            "\"data\":" + (String)cr.value() +
-                            "}}";
+            public String call(ConsumerRecord<String, Object> cr) throws SQLException {
+                String json = "{" +
+                        "\"index\":{" +
+                        "\"data\":" + (String)cr.value() +
+                        "}}";
+                jdbcConnector.insert((String)cr.value());
                     return json;
                 }
             }
         );
         JavaEsSparkStreaming.saveJsonToEs(finalStream, "streaming/text");
-
         LogUtil.traceLog.info("Start Spark Streaming & elasticsearch");
+
         jsc.start();
-        jsc.awaitTermination();
+        try {
+            jsc.awaitTermination();
+        }catch (Exception e){
+            LogUtil.traceLog.info(e.getMessage());
+        }
     }
 }
