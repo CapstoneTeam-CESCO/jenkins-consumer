@@ -83,3 +83,6 @@
 2021-01-15 23:59:28.954 [34m INFO[0;39m [main] Start Spark Streaming & elasticsearch
 2021-01-15 23:59:31.033 [34m INFO[0;39m [main] Previously tracked partitions [test-topic-2] been revoked by Kafka because of consumer rebalance. This is mostly due to another stream with same group id joined, please check if there're different streaming application misconfigure to use same group id. Fundamentally different stream should use different group id
 2021-01-15 23:59:39.797 [1;31mERROR[0;39m [Executor task launch worker for task 40] java.sql.SQLSyntaxErrorException: (conn=507) Data too long for column 'contents' at row 1
+2021-01-22 18:55:09.087 [34m INFO[0;39m [main] JDBC Connection...
+2021-01-22 18:55:09.148 [34m INFO[0;39m [main] Spark Streaming & elasticsearch setting...
+2021-01-22 18:55:21.559 [34m INFO[0;39m [main] Start Spark Streaming & elasticsearch

@@ -1,4 +1,4 @@
-common/LogUtil.class
-mariaConnect/jdbcConnector.class
-spark/spark_consumer$1.class
-spark/spark_consumer.class
+consumer/spark/spark_consumer.class
+consumer/mariaConnect/jdbcConnector.class
+consumer/spark/spark_consumer$1.class
+consumer/common/LogUtil.class

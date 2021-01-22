@@ -1,4 +1,4 @@
-/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/spark/spark_consumer.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/consumer/common/LogUtil.java
 /Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/consumer/ConsumerApplication.java
-/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/mariaConnect/jdbcConnector.java
-/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/common/LogUtil.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/consumer/mariaConnect/jdbcConnector.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/consumer/spark/spark_consumer.java
