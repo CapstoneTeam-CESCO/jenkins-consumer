@@ -1,4 +1,6 @@
-/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/consumer/common/LogUtil.java
-/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/consumer/ConsumerApplication.java
-/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/consumer/mariaConnect/jdbcConnector.java
-/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/consumer/spark/spark_consumer.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/com/capstone/consumer/server/mariaConnect/jdbcConnector.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/com/capstone/consumer/server/Application.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/com/capstone/consumer/server/mariaConnect/MariaDBRunner.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/com/capstone/consumer/server/mariaConnect/DBConfiguration.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/com/capstone/consumer/server/common/LogUtil.java
+/Users/donggyu-kim/Desktop/gitpro/capstone/jenkins-consumer/src/main/java/com/capstone/consumer/server/spark/spark_consumer.java

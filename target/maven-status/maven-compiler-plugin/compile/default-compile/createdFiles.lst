@@ -1,4 +1,6 @@
-consumer/spark/spark_consumer.class
-consumer/mariaConnect/jdbcConnector.class
-consumer/spark/spark_consumer$1.class
-consumer/common/LogUtil.class
+com/capstone/consumer/server/common/LogUtil.class
+com/capstone/consumer/server/mariaConnect/MariaDBRunner.class
+com/capstone/consumer/server/Application$1.class
+com/capstone/consumer/server/mariaConnect/DBConfiguration.class
+com/capstone/consumer/server/mariaConnect/jdbcConnector.class
+com/capstone/consumer/server/Application.class
