@@ -29,8 +29,31 @@ public class MariaDBRunner implements ApplicationRunner {
             //String sql = "CREATE TABLE TESTING2(ID INTEGER NOT NULL, name VARCHAR(200))";
             //statement.executeUpdate(sql);
         }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
         jdbcTemplate.execute("INSERT INTO TESTING VALUES (1,'Dong')");
     }
+
+//    TODO: 디비에 맞는 INSERT 구현
+
+//     try {
+//         String SQL = "INSERT INTO Notices(device_id,type,contents,is_readed,created_at) VALUES (?,?,?,?,?)";
+//
+//         pstmt = conn.prepareStatement(SQL);
+//         // pstmt.setInt(1,);  // id
+//         pstmt.setNull(1,Types.INTEGER); // device_id
+//         pstmt.setNull(2,Types.VARCHAR); // type
+//         pstmt.setString(3,contents); // contents
+//         pstmt.setBoolean(4,false); // is_readed
+//         pstmt.setNull(5, Types.DATE); //created_at
+//
+//        int r = pstmt.executeUpdate();
+//        System.out.println("변경된 row : "+ r);
+//        pstmt.close();
+//    } catch(SQLException e) {
+//         LogUtil.traceLog.error(String.valueOf(e));
+//     }
 
 }
