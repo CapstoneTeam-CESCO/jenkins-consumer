@@ -8,14 +8,16 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>consumer</artifactId>
+
+	<groupId>com.capstone</groupId>
+	<artifactId>consumer.server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>consumer</name>
+	<name>consumer.server</name>
 	<description>Consumer project for messaging system</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<start-class>com.capstone.consumer.server.Application</start-class>
 	</properties>
 
 	<dependencies>
@@ -40,7 +42,7 @@
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_2.12</artifactId>
 			<version>3.0.0</version>
-		</dependency>
+ 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.spark</groupId>
@@ -76,6 +78,44 @@
 			<version>1.10</version>
 		</dependency>
 
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+
+		<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+
+
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.3.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+
 		<!-- Logging -->
 <!--		<dependency>-->
 <!--			<groupId>ch.qos.logback</groupId>-->
@@ -92,12 +132,45 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>**/application*.yml</include>
+					<include>**/application*.yaml</include>
+					<include>**/application*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+
+				<directory>${basedir}/src/main/resources</directory>
+				<excludes>
+					<exclude>**/application*.yml</exclude>
+					<exclude>**/application*.yaml</exclude>
+					<exclude>**/application*.properties</exclude>
+				</excludes>
+			</resource>
+
+		</resources>
+
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			<configuration>
+				<excludes>
+					<exclude>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-configuration-processor</artifactId>
+					</exclude>
+				</excludes>
+			</configuration>
 			</plugin>
 		</plugins>
+
+
 	</build>
 
 </project>
