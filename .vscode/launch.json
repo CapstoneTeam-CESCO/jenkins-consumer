@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-spark_consumer<consumer>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "spark.spark_consumer",
+            "projectName": "consumer",
+            "args": ""
+        }
+    ]
+}
