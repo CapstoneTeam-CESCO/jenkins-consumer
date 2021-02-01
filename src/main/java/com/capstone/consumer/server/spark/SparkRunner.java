@@ -1,7 +1,9 @@
 package com.capstone.consumer.server.spark;
 
 import com.capstone.consumer.server.common.LogUtil;
+import org.apache.htrace.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.common.protocol.types.Field;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
@@ -27,10 +29,10 @@ import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Component
 public class SparkRunner implements Serializable,Runnable {
@@ -102,11 +104,19 @@ public class SparkRunner implements Serializable,Runnable {
         // Spark Streaming 읽은 데이터의 value 를 출력한다.
         stream.map(raw->raw.value()).print();
 
+        // Elastalert 사용을 위한 Timestamp 를 생성한다.
+        Date now = new Date(System.currentTimeMillis());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        sdf.setTimeZone(TimeZone.getTimeZone("CET"));
+        String strNow = sdf.format(now);
+
         // 데이터를 json 형식의 문자열로 변환하여 elasticsearch 에 저장한다.
         JavaDStream<String> finalStream = stream.map(new Function<ConsumerRecord<String, Object>, String>() {
             @Override
             public String call(ConsumerRecord<String, Object> cr) throws SQLException {
                 String json = "{" +
+                        "\"timestamp\":\"" + strNow + "\"," +
                         "\"index\":{" +
                         "\"data\":" + (String)cr.value() +
                         "}}";
