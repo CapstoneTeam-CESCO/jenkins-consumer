@@ -33,7 +33,7 @@ public class MariaDBRunner implements ApplicationRunner {
             e.printStackTrace();
         }
 
-        jdbcTemplate.execute("INSERT INTO TESTING VALUES (1,'Dong')");
+//        jdbcTemplate.execute("INSERT INTO TESTING VALUES (1,'Dong')");
     }
 
 //    TODO: 디비에 맞는 INSERT 구현
